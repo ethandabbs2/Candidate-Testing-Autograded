@@ -23,23 +23,44 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  candidateAnswer = input.question(questions);
+  for (i = 0; i < questions.length; i++){
+    candidateAnswers[i] = input.question(questions[i]);
+  }
 }
 
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   
-  if (candidateAnswer === correctAnswers){
-    console.log(candidateAnswer + " is correct!");   
+  
+  
+  
+  
+  // if (candidateAnswer === correctAnswers){
+  //   console.log(candidateAnswer + " is correct!");   
+  // }
+  // else {
+  //   console.log(candidateAnswer + " is incorrect " + " the correct awnser is, " + correctAnswers); 
+  // }
+
+  let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
+for (i = 0; i < correctAnswers.length; i++){
+  if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
+    console.log(candidateAnswers[i] + " is correct!");   
+    grade++;
   }
   else {
-    console.log(candidateAnswer + " is incorrect " + " the correct awnser is, " + correctAnswers); 
+    console.log(candidateAnswers[i] + " is incorrect " + " the correct awnser is, " + correctAnswers[i]); 
   }
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
-  return grade;
+}
+  let percent = grade/candidateAnswers.length * 100;
+  console.log("You got " + grade + " right out of " + correctAnswers.length + " for a score of " + percent + "%");
+  if (percent < 80){
+    console.log("You failed")
+  }
+  else{ 
+    console.log("Good work! You passed!")
+}
+  return grade/candidateAnswers.length * 100;
 }
 
 function runProgram() {
