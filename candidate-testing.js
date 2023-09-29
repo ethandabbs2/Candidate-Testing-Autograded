@@ -23,26 +23,16 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
+  // Asking user quiz questions one at a time and storing it in candidateAnswers   
   for (i = 0; i < questions.length; i++){
-    candidateAnswers[i] = input.question(questions[i]);
+    candidateAnswers[i] = input.question("\n" + (i+1) + ". " + questions[i]);
   }
 }
-
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  
-  
-  
-  
-  
-  // if (candidateAnswer === correctAnswers){
-  //   console.log(candidateAnswer + " is correct!");   
-  // }
-  // else {
-  //   console.log(candidateAnswer + " is incorrect " + " the correct awnser is, " + correctAnswers); 
-  // }
-
+  // Grading the questions one at a time, if correct then it adds to the grade total, if not then user is told their awnser is incorrect 
   let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
+  console.log('');
 for (i = 0; i < correctAnswers.length; i++){
   if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
     console.log(candidateAnswers[i] + " is correct!");   
@@ -52,8 +42,10 @@ for (i = 0; i < correctAnswers.length; i++){
     console.log(candidateAnswers[i] + " is incorrect " + " the correct awnser is, " + correctAnswers[i]); 
   }
 }
+
+  // Using the gradeQuiz function to also calculate the percentage and let user know if they passed with 80% or better  
   let percent = grade/candidateAnswers.length * 100;
-  console.log("You got " + grade + " right out of " + correctAnswers.length + " for a score of " + percent + "%");
+  console.log("\nYou got " + grade + " right out of " + correctAnswers.length + " for a score of " + percent + "%");
   if (percent < 80){
     console.log("You failed")
   }
